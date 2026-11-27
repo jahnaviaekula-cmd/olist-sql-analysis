@@ -26,7 +26,6 @@ MySQL, MySQL Workbench, Excel (used once to clean the reviews file), Power BI De
 
 ## Data cleaning and assumptions
 
-The setup steps are recorded in [`queries/01_setup_and_cleaning.sql`](queries/01_setup_and_cleaning.sql). The main points:
 
 - **Dates:** text timestamps were converted to `DATETIME`, and primary keys and indexes were added.
 - **Hidden character:** the translation table's first column came in with an invisible marker in its name, which made category joins return nothing. It was renamed.
@@ -42,7 +41,7 @@ The setup steps are recorded in [`queries/01_setup_and_cleaning.sql`](queries/01
 
 ## Database structure
 
-![ER diagram](images/er_diagram.png)
+![ER diagram](Images/er_diagram.png)
 
 How the tables connect:
 
@@ -58,7 +57,7 @@ How the tables connect:
 
 ## Business questions and findings
 
-All queries, with explanations and insights, are in [`queries/02_analysis.sql`](queries/02_analysis.sql).
+All queries, with explanations and insights, are in [`queries/02_analysis.sql`](Queries/02_analysis.sql).
 
 | # | Question | Key finding |
 |---|---|---|
@@ -87,20 +86,20 @@ All queries, with explanations and insights, are in [`queries/02_analysis.sql`](
 
 ## Power BI dashboard
 
-I built a 3-page dashboard in Power BI Desktop on top of the cleaned Olist tables, using the same rules as the SQL analysis (delivered orders only, Jan 2017 to Aug 2018). The headline numbers match the SQL results: 13.18M revenue, 96,211 orders and 93,104 unique customers. [Download the full dashboard as PDF](dashboard/olist_dashboard.pdf).
+I built a 3-page dashboard in Power BI Desktop on top of the cleaned Olist tables, using the same rules as the SQL analysis (delivered orders only, Jan 2017 to Aug 2018). The headline numbers match the SQL results: 13.18M revenue, 96,211 orders and 93,104 unique customers. [Download the full dashboard as PDF](Dashboard/olist_dashboard.pdf).
 
 ### Page 1: Sales overview
-![Sales overview](images/dashboard_sales_overview.png)
+![Sales overview](Images/dashboard_sales_overview.png)
 
 Monthly revenue peaks in November 2017 (about 988K) and levels off in 2018. The top 3 categories by revenue are health_beauty, watches_gifts and bed_bath_table.
 
 ### Page 2: Customers and geography
-![Customers and geography](images/dashboard_customers_geography.png)
+![Customers and geography](Images/dashboard_customers_geography.png)
 
 SP brings in about 5.1M of revenue, far ahead of RJ (1.8M) and MG (1.5M). Among the 10 biggest states, SP has the lowest average order value (125) and BA the highest (152).
 
 ### Page 3: Delivery and satisfaction
-![Delivery and satisfaction](images/dashboard_delivery_satisfaction.png)
+![Delivery and satisfaction](Images/dashboard_delivery_satisfaction.png)
 
 8.1% of delivered orders arrive late, and the average delivery takes about 12.5 days. Late orders score 2.57 on average against 4.29 for on-time orders. Among the 10 biggest states, the late rate is highest in BA (14.0%), RJ (13.5%) and ES (12.2%), and lowest in PR (5.0%), MG (5.6%) and SP (5.9%).
 
@@ -115,12 +114,12 @@ Note: Power BI averages individual reviews, while the SQL analysis averaged per 
 ```
 olist-sql-analysis/
 ├── README.md
-├── queries/
+├── Queries/
 │   ├── 01_setup_and_cleaning.sql
 │   └── 02_analysis.sql
-├── dashboard/
+├── Dashboard/
 │   └── olist_dashboard.pdf
-└── images/                  (ER diagram and dashboard screenshots)
+└── Images/                  (ER diagram and dashboard screenshots)
 ```
 
 ## How to reproduce
