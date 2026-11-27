@@ -2,7 +2,7 @@
 
 An analysis of about 100,000 Brazilian e-commerce orders (2016-2018) using **MySQL**. It answers 12 business questions on sales growth, products, geography, customers, delivery and sellers, and documents how data quality problems were found and fixed along the way.
 
-**Author:** [Aekula Jahnavi] | [www.linkedin.com/in/aekula-jahnavi] | [https://github.com/jahnaviaekula-cmd]
+**Author:** Aekula Jahnavi | [LinkedIn](https://www.linkedin.com/in/aekula-jahnavi) | [GitHub](https://github.com/jahnaviaekula-cmd)
 
 ---
 
@@ -12,7 +12,7 @@ An analysis of about 100,000 Brazilian e-commerce orders (2016-2018) using **MyS
 
 ## Tools
 
-MySQL, MySQL Workbench, Excel (used once to clean the reviews file).
+MySQL, MySQL Workbench, Excel (used once to clean the reviews file), Power BI Desktop .
 
 ## SQL skills shown
 
@@ -85,6 +85,29 @@ All queries, with explanations and insights, are in [`queries/02_analysis.sql`](
 
 **Limitations:** the analysis is descriptive. It shows which things go together (for example late delivery and low scores) but does not prove cause. Revenue uses item price only, and the 2018 figures cover January to August only.
 
+## Power BI dashboard
+
+I built a 3-page dashboard in Power BI Desktop on top of the cleaned Olist tables, using the same rules as the SQL analysis (delivered orders only, Jan 2017 to Aug 2018). The headline numbers match the SQL results: 13.18M revenue, 96,211 orders and 93,104 unique customers. [Download the full dashboard as PDF](dashboard/olist_dashboard.pdf).
+
+### Page 1: Sales overview
+![Sales overview](images/dashboard_sales_overview.png)
+
+Monthly revenue peaks in November 2017 (about 988K) and levels off in 2018. The top 3 categories by revenue are health_beauty, watches_gifts and bed_bath_table.
+
+### Page 2: Customers and geography
+![Customers and geography](images/dashboard_customers_geography.png)
+
+SP brings in about 5.1M of revenue, far ahead of RJ (1.8M) and MG (1.5M). Among the 10 biggest states, SP has the lowest average order value (125) and BA the highest (152).
+
+### Page 3: Delivery and satisfaction
+![Delivery and satisfaction](images/dashboard_delivery_satisfaction.png)
+
+8.1% of delivered orders arrive late, and the average delivery takes about 12.5 days. Late orders score 2.57 on average against 4.29 for on-time orders. Among the 10 biggest states, the late rate is highest in BA (14.0%), RJ (13.5%) and ES (12.2%), and lowest in PR (5.0%), MG (5.6%) and SP (5.9%).
+
+Note: Power BI averages individual reviews, while the SQL analysis averaged per order first, so the on-time score shows 4.29 here and 4.30 in the SQL results.
+
+**DAX measures used:** Total Revenue, Total Orders, Avg Order Value, Revenue Last Month, MoM Growth %, Unique Customers, Delivered With Date, Late Orders, Late %, Avg Delivery Days, Avg Review Score, plus a calculated column (Delivery Status) that labels each order Late or On time.
+
 ---
 
 ## Repository structure
@@ -93,9 +116,11 @@ All queries, with explanations and insights, are in [`queries/02_analysis.sql`](
 olist-sql-analysis/
 ├── README.md
 ├── queries/
-│   ├── 01_setup_and_cleaning.sql   (setup steps and data quality fixes, as a record)
-│   └── 02_analysis.sql             (the 12 analysis queries)
-└── images/                         (ER diagram and screenshots)
+│   ├── 01_setup_and_cleaning.sql
+│   └── 02_analysis.sql
+├── dashboard/
+│   └── olist_dashboard.pdf
+└── images/                  (ER diagram and dashboard screenshots)
 ```
 
 ## How to reproduce
